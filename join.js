@@ -1,6 +1,6 @@
 // Tilmeldingsformularen: sender KU-mailen til Google Apps Script, som mailer instruktionerne.
 // Web-app-URL fra Google Apps Script (se apps-script/Code.gs og README.md).
-const ENDPOINT = 'INDSÆT_APPS_SCRIPT_URL_HER';
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzzUAf-Y01kjWySZdeQ-vQqdf8z46_XB2SmPmkK8RY_h0596YzBe6QAhWeGYYds7H7YgQ/exec';
 const KU_MAIL = /^[^\s@]+@([a-z0-9-]+\.)*ku\.dk$/i;
 
 const TEXT = {
