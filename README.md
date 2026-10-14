@@ -17,3 +17,16 @@ KU Padels hjemmeside. Én statisk side, hostet gratis på GitHub Pages.
 | CNAME | www  | keysersauce.github.io |
 
 Domænet (kupadel.dk) er registreret hos Punktum dk og udløber 21.02.2027.
+
+## Tilmeldingsmailen (Google Apps Script)
+
+Når nogen skriver sin KU-mail på siden, sender et Google Apps Script på padelcss@gmail.com velkomstmailen med links til MATCHi og Padel Yard. Koden ligger i `apps-script/Code.gs`, og mailens tekst og links rettes dér.
+
+Opsætning (én gang, logget ind som padelcss@gmail.com):
+
+1. Gå til script.google.com → **Nyt projekt**, og indsæt indholdet af `apps-script/Code.gs`.
+2. **Implementer → Ny implementering** → type **Webapp**. Udfør som: **Mig**. Hvem har adgang: **Alle**.
+3. Godkend adgangen, og kopiér webapp-URL'en (slutter på `/exec`).
+4. Indsæt URL'en i `ENDPOINT` nederst i `index.html`.
+
+Retter du i scriptet senere: **Implementer → Administrer implementeringer → Rediger → Ny version**, så URL'en forbliver den samme. Gmail tillader ca. 100 mails i døgnet.

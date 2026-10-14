@@ -49,29 +49,14 @@
   <section id="bliv-medlem" class="section">
     <div class="wrap">
       <h2>Bliv medlem</h2>
-      <ol class="steps">
-        <li>
-          <h3>Opret en MATCHi-profil med din KU-mail</h3>
-          <p>Brug din KU-mail, oftest <strong>@alumni.ku.dk</strong>. Det er mailen, Padel Yard kender dig på. Har du allerede en profil med din KU-mail, kan du springe til næste trin.</p>
-          <a class="btn" href="https://www.matchi.se/login/register" target="_blank" rel="noopener">Opret MATCHi-profil</a>
-        </li>
-        <li>
-          <h3>Tilmeld dig Padel Yard</h3>
-          <p>Udfyld Padel Yards formular med samme KU-mail. Du kan tilmelde dig begge baner.</p>
-          <div class="btn-row">
-            <a class="btn" href="https://www.matchi.se/forms/oahYllpIK7xUlHsBNxEG" target="_blank" rel="noopener">Reffen</a>
-            <a class="btn" href="https://www.matchi.se/forms/BJmogu9p979C00i8wB0I" target="_blank" rel="noopener">Jernbanebyen</a>
-          </div>
-        </li>
-        <li>
-          <h3>Book en bane</h3>
-          <p>Padel Yard placerer dig i KU-gruppen, og så booker du til medlemspris gennem MATCHi.</p>
-          <div class="btn-row">
-            <a class="btn btn-ghost" href="https://www.matchi.se/facilities/padelyard" target="_blank" rel="noopener">Book Reffen</a>
-            <a class="btn btn-ghost" href="https://www.matchi.se/facilities/padelyardjernbanebyen" target="_blank" rel="noopener">Book Jernbanebyen</a>
-          </div>
-        </li>
-      </ol>
+      <p class="join-text">Skriv din KU-mail, så sender vi dig en mail med vejledningen til MATCHi og Padel Yard. Medlemskabet er gratis.</p>
+      <form id="join" class="join" novalidate>
+        <label for="email" class="sr-only">KU-mail</label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="abc123@alumni.ku.dk" required>
+        <input name="website" type="text" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <button class="btn" type="submit">Send vejledning</button>
+      </form>
+      <p id="join-msg" class="join-msg" role="status"></p>
     </div>
   </section>
 
@@ -128,9 +113,45 @@
       <p><a href="mailto:info@kupadel.dk">info@kupadel.dk</a><br>
         <a href="https://www.instagram.com/kupadel/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/KU-Padel-109963844948244" target="_blank" rel="noopener">Facebook</a></p>
     </div>
-    <p class="privacy">Siden indsamler ingen personoplysninger og bruger ingen cookies. Tilmelding sker direkte hos MATCHi og Padel Yard, som behandler dine oplysninger efter deres egne vilkår.</p>
+    <p class="privacy">Siden bruger ingen cookies. Din KU-mail bruges kun til at sende dig vejledningen og gemmes ikke i en medlemsliste. Selve tilmeldingen sker hos MATCHi og Padel Yard, som behandler dine oplysninger efter deres egne vilkår.</p>
   </div>
 </footer>
+
+<script>
+  // Web-app-URL fra Google Apps Script (se apps-script/Code.gs og README.md).
+  const ENDPOINT = 'INDSÆT_APPS_SCRIPT_URL_HER';
+  const KU_MAIL = /^[^\s@]+@([a-z0-9-]+\.)*ku\.dk$/i;
+
+  const form = document.getElementById('join');
+  const msg = document.getElementById('join-msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.email.value.trim();
+    if (!KU_MAIL.test(email)) {
+      msg.className = 'join-msg error';
+      msg.textContent = 'Brug din KU-mail, fx abc123@alumni.ku.dk.';
+      return;
+    }
+    const button = form.querySelector('button');
+    button.disabled = true;
+    msg.className = 'join-msg';
+    msg.textContent = 'Sender …';
+    try {
+      const res = await fetch(ENDPOINT, { method: 'POST', body: new URLSearchParams(new FormData(form)) });
+      const data = await res.json();
+      if (data.status !== 'ok') throw new Error(data.status);
+      form.reset();
+      msg.className = 'join-msg ok';
+      msg.textContent = `Tjek din indbakke på ${email}. Kan du ikke finde mailen, så kig i spam.`;
+    } catch {
+      msg.className = 'join-msg error';
+      msg.textContent = 'Noget gik galt. Prøv igen, eller skriv til padelcss@gmail.com.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+</script>
 
 </body>
 </html>
