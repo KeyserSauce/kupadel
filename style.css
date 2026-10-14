@@ -113,12 +113,12 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .venue-card h3 { margin: 0; padding: 14px 20px; background: var(--red); color: #fff; font-size: 1.1rem; }
 .venue-card h3 span { display: block; font-weight: 400; font-size: .85rem; opacity: .8; margin-top: 2px; }
 .venue-card table { width: 100%; border-collapse: collapse; }
-.venue-card th, .venue-card td { padding: 12px 20px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); }
+.venue-card th, .venue-card td { padding: 12px 16px 12px 4px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); }
 .venue-card tr:first-child th, .venue-card tr:first-child td { border-top: 0; }
-.venue-card th { font-weight: 600; white-space: nowrap; width: 1%; padding-right: 8px; }
-.slots { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.slots li { background: var(--tint); border-radius: 999px; padding: 2px 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.slots b { color: var(--red); margin-left: 4px; }
+.venue-card th { font-weight: 600; white-space: nowrap; width: 1%; padding-left: 16px; padding-right: 10px; }
+.slots { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.slots li { background: var(--tint); border-radius: 999px; padding: 2px 9px; font-size: .94rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.slots b { color: var(--red); margin-left: 3px; }
 
 /* About */
 .social { color: var(--muted); }
@@ -147,13 +147,15 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .privacy { grid-column: 1 / -1; font-size: .85rem; color: rgba(255, 255, 255, .55); border-top: 1px solid rgba(255, 255, 255, .12); padding-top: 20px; }
 
 /* Mobile */
+@media (max-width: 1040px) {
+  .price-grid { grid-template-columns: 1fr; }
+}
 @media (max-width: 820px) {
   .hero { padding: 48px 0 56px; }
   .hero-inner { grid-template-columns: 1fr; gap: 28px; }
   .hero-logo { width: 140px; }
   .section { padding: 56px 0; }
   .footer-inner { grid-template-columns: 1fr; }
-  .price-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .join { flex-direction: column; }
