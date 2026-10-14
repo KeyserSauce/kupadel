@@ -42,7 +42,6 @@ function htmlMail(email) {
   const link = (href) => `<a href="${href}" style="color:#901a1e">${href}</a>`;
   return `
 <div style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#1d1b1a;max-width:560px">
-  <p>Hey,</p>
   <p>Welcome to KU Padel!</p>
   <p>Happy to have you onboard. To complete the sign up process and enjoy the juicy discounts, please follow this process:</p>
   <p>1) Create a MATCHi account (with your KU-email, <strong>${email}</strong>):<br>${link(LINKS.matchi)}</p>
@@ -56,9 +55,7 @@ function htmlMail(email) {
 }
 
 function textMail(email) {
-  return `Hey,
-
-Welcome to KU Padel!
+  return `Welcome to KU Padel!
 
 Happy to have you onboard. To complete the sign up process and enjoy the juicy discounts, please follow this process:
 
