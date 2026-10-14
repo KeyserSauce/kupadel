@@ -2,7 +2,7 @@
 
 KU Padels hjemmeside. Én statisk side, hostet gratis på GitHub Pages.
 
-- Tekst: ret i `index.html` (kan gøres direkte på GitHub med blyant-ikonet). Ændringer er live efter et minut eller to.
+- Tekst: dansk i `index.html`, engelsk i `en/index.html`. Husk at rette begge. Det kan gøres direkte på GitHub med blyant-ikonet, og ændringer er live efter et minut eller to.
 - Udseende: `style.css`.
 - Billeder: `assets/`.
 
@@ -27,6 +27,6 @@ Opsætning (én gang, logget ind som padelcss@gmail.com):
 1. Gå til script.google.com → **Nyt projekt**, og indsæt indholdet af `apps-script/Code.gs`.
 2. **Implementer → Ny implementering** → type **Webapp**. Udfør som: **Mig**. Hvem har adgang: **Alle**.
 3. Godkend adgangen, og kopiér webapp-URL'en (slutter på `/exec`).
-4. Indsæt URL'en i `ENDPOINT` nederst i `index.html`.
+4. Indsæt URL'en i `ENDPOINT` øverst i `join.js`.
 
 Retter du i scriptet senere: **Implementer → Administrer implementeringer → Rediger → Ny version**, så URL'en forbliver den samme. Gmail tillader ca. 100 mails i døgnet.

@@ -149,7 +149,8 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 @media (max-width: 560px) {
   .join { flex-direction: column; }
   .join .btn { align-self: flex-start; }
-  .topbar nav a:not(.nav-cta) { display: none; }
+  .topbar nav a:not(.nav-cta):not(.lang) { display: none; }
+  .topbar nav { gap: 14px; }
   .prices th, .prices td { padding: 10px 12px; }
   .prices .venue span { display: block; margin-left: 0; }
 }

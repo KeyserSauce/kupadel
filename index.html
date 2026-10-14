@@ -9,6 +9,7 @@
   <meta property="og:description" content="Gratis medlemskab og billigere padel hos Padel Yard for studerende ved Københavns Universitet.">
   <meta property="og:image" content="https://kupadel.dk/assets/logo.png">
   <meta property="og:url" content="https://kupadel.dk/">
+  <link rel="alternate" hreflang="en" href="https://kupadel.dk/en/">
   <link rel="icon" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
@@ -21,6 +22,7 @@
     <nav>
       <a href="#priser">Priser</a>
       <a href="#om">Om os</a>
+      <a class="lang" href="en/" lang="en" hreflang="en">English</a>
       <a class="nav-cta" href="#bliv-medlem">Bliv medlem</a>
     </nav>
   </div>
@@ -49,7 +51,7 @@
   <section id="bliv-medlem" class="section">
     <div class="wrap">
       <h2>Bliv medlem</h2>
-      <p class="join-text">Skriv din KU-mail, så sender vi dig en mail med vejledningen til MATCHi og Padel Yard. Medlemskabet er gratis.</p>
+      <p class="join-text">Skriv din KU-mail, så sender vi en mail med nærmere instruktioner.</p>
       <form id="join" class="join" novalidate>
         <label for="email" class="sr-only">KU-mail</label>
         <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="abc123@alumni.ku.dk" required>
@@ -117,41 +119,7 @@
   </div>
 </footer>
 
-<script>
-  // Web-app-URL fra Google Apps Script (se apps-script/Code.gs og README.md).
-  const ENDPOINT = 'INDSÆT_APPS_SCRIPT_URL_HER';
-  const KU_MAIL = /^[^\s@]+@([a-z0-9-]+\.)*ku\.dk$/i;
-
-  const form = document.getElementById('join');
-  const msg = document.getElementById('join-msg');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = form.email.value.trim();
-    if (!KU_MAIL.test(email)) {
-      msg.className = 'join-msg error';
-      msg.textContent = 'Brug din KU-mail, fx abc123@alumni.ku.dk.';
-      return;
-    }
-    const button = form.querySelector('button');
-    button.disabled = true;
-    msg.className = 'join-msg';
-    msg.textContent = 'Sender …';
-    try {
-      const res = await fetch(ENDPOINT, { method: 'POST', body: new URLSearchParams(new FormData(form)) });
-      const data = await res.json();
-      if (data.status !== 'ok') throw new Error(data.status);
-      form.reset();
-      msg.className = 'join-msg ok';
-      msg.textContent = `Tjek din indbakke på ${email}. Kan du ikke finde mailen, så kig i spam.`;
-    } catch {
-      msg.className = 'join-msg error';
-      msg.textContent = 'Noget gik galt. Prøv igen, eller skriv til padelcss@gmail.com.';
-    } finally {
-      button.disabled = false;
-    }
-  });
-</script>
+<script src="join.js"></script>
 
 </body>
 </html>
